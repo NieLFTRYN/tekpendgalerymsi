@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Jelajahi Website</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Montserrat', sans-serif;
+    background:#0d0d0f;
+    color:white;
+    overflow-x:hidden;
+}
+
+/* BACKGROUND */
+.background-grid{
+    position:fixed;
+    inset:0;
+    background:
+    linear-gradient(rgba(255,255,255,0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.03) 1px, transparent 1px);
+    background-size:35px 35px;
+    z-index:-2;
+}
+
+.blur-purple{
+    position:fixed;
+    width:350px;
+    height:350px;
+    background:#4b1f73;
+    border-radius:50%;
+    filter:blur(120px);
+    opacity:0.25;
+    top:-100px;
+    right:-100px;
+    z-index:-1;
+}
+
+/* CONTAINER */
+.container{
+    width:90%;
+    max-width:1300px;
+    margin:auto;
+    padding:40px 0;
+}
+
+/* TOP */
+.top-bar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:35px;
+}
+
+.title h1{
+    font-size:42px;
+}
+
+.title span{
+    color:#9f72ff;
+}
+
+.back-btn{
+    text-decoration:none;
+    background:#5b2a86;
+    color:white;
+    padding:12px 24px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.back-btn:hover{
+    background:#7443ad;
+}
+
+/* ROOM BUTTONS */
+.room-buttons{
+    display:flex;
+    gap:15px;
+    margin-bottom:35px;
+    flex-wrap:wrap;
+}
+
+.room-buttons button{
+    padding:14px 24px;
+    border:none;
+    border-radius:14px;
+    background:rgba(255,255,255,0.05);
+    color:white;
+    cursor:pointer;
+    transition:.3s;
+    font-size:15px;
+}
+
+.room-buttons button:hover{
+    background:#5b2a86;
+}
+
+/* MAIN CONTENT */
+.room-card{
+    background:rgba(255,255,255,0.04);
+    border:1px solid rgba(255,255,255,0.08);
+    border-radius:30px;
+    overflow:hidden;
+    display:grid;
+    grid-template-columns:1.1fr 0.9fr;
+    backdrop-filter:blur(20px);
+}
+
+/* IMAGE */
+.room-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+/* TEXT */
+.room-content{
+    padding:50px;
+}
+
+.room-content h2{
+    font-size:40px;
+    margin-bottom:20px;
+}
+
+.room-content span{
+    color:#9f72ff;
+}
+
+.room-content p{
+    color:#cccccc;
+    line-height:1.9;
+    margin-bottom:30px;
+}
+
+/* BUTTON */
+.room-btn{
+    display:inline-block;
+    text-decoration:none;
+    background:#5b2a86;
+    color:white;
+    padding:14px 28px;
+    border-radius:14px;
+    transition:.3s;
+}
+
+.room-btn:hover{
+    background:#7443ad;
+    transform:translateY(-3px);
+}
+
+/* RESPONSIVE */
+@media(max-width:900px){
+
+    .room-card{
+        grid-template-columns:1fr;
+    }
+
+    .room-content{
+        padding:30px;
+    }
+
+    .title h1{
+        font-size:32px;
+    }
+
+    .room-content h2{
+        font-size:30px;
+    }
+
+    .top-bar{
+        flex-direction:column;
+        gap:20px;
+    }
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="background-grid"></div>
+<div class="blur-purple"></div>
+
+<div class="container">
+
+    <!-- TOP -->
+    <div class="top-bar">
+
+        <div class="title">
+            <h1>Jelajahi <span>Ruangan</span></h1>
+        </div>
+
+        <a href="websitemsi.html" class="back-btn">
+            ← Kembali
+        </a>
+
+    </div>
+
+    <!-- TOMBOL PILIH RUANGAN -->
+    <div class="room-buttons">
+
+        <button onclick="showRoom('cinema')">
+            Ruang Cinema
+        </button>
+
+        <button onclick="showRoom('podcast')">
+            Ruang Podcast
+        </button>
+
+        <button onclick="showRoom('editing')">
+            Ruang Editing
+        </button>
+
+    </div>
+
+    <!-- CONTENT -->
+    <div class="room-card">
+
+        <div class="room-image">
+            <img id="roomImage"
+            src="https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200"
+            alt="Ruangan">
+        </div>
+
+        <div class="room-content">
+
+            <h2 id="roomTitle">
+                Ruangan <span>Cinema</span>
+            </h2>
+
+            <p id="roomDesc">
+                Ruangan Cinema merupakan fasilitas multimedia yang digunakan
+                untuk pemutaran video pembelajaran, presentasi visual,
+                simulasi media, dan kegiatan akademik berbasis audiovisual.
+                Ruangan ini dirancang untuk memberikan pengalaman belajar
+                yang lebih interaktif dan menarik.
+            </p>
+
+            <a href="barang-cinema.html" class="room-btn" id="roomBtn">
+                Lihat Barang Tersedia
+            </a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+
+function showRoom(room){
+
+    const image =
+    document.getElementById("roomImage");
+
+    const title =
+    document.getElementById("roomTitle");
+
+    const desc =
+    document.getElementById("roomDesc");
+
+    const btn =
+    document.getElementById("roomBtn");
+
+    if(room === "cinema"){
+
+        image.src =
+        "https://images.unsplash.com/photo-1489599849927-2ee91cede3ba?q=80&w=1200";
+
+        title.innerHTML =
+        'Ruangan <span>Cinema</span>';
+
+        desc.innerHTML =
+        'Ruangan Cinema digunakan untuk pembelajaran audiovisual, pemutaran video edukatif, simulasi pembelajaran digital, serta kegiatan multimedia interaktif.';
+
+        btn.href =
+        "barang-cinema.html";
+    }
+
+    else if(room === "podcast"){
+
+        image.src =
+        "https://images.unsplash.com/photo-1590602847861-f357a9332bbc?q=80&w=1200";
+
+        title.innerHTML =
+        'Ruangan <span>Podcast</span>';
+
+        desc.innerHTML =
+        'Ruangan Podcast digunakan untuk produksi audio pembelajaran, rekaman materi pendidikan, voice over media pembelajaran, serta komunikasi digital pendidikan.';
+
+        btn.href =
+        "barang-podcast.html";
+    }
+
+    else if(room === "editing"){
+
+        image.src =
+        "https://images.unsplash.com/photo-1522199755839-a2bacb67c546?q=80&w=1200";
+
+        title.innerHTML =
+        'Ruangan <span>Editing</span>';
+
+        desc.innerHTML =
+        'Ruangan Editing digunakan untuk proses editing video pembelajaran, desain media digital, animasi pendidikan, dan pengembangan multimedia interaktif.';
+
+        btn.href =
+        "barang-editing.html";
+    }
+
+}
+
+</script>
+
+</body>
+</html>
